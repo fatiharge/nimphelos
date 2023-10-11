@@ -181,8 +181,8 @@ extension PrepareDioExceptionExtension on Nimphelos {
 
     return (JsonUnsupportedObjectError exception) => showAlertDialog(
           context,
-          "Unknown Error",
-          "An unexpected error occurred.",
+          "UnsupportedObject Error",
+          "An UnsupportedObject error occurred.",
           "Close",
         );
   }
@@ -210,8 +210,8 @@ extension PrepareDioExceptionExtension on Nimphelos {
 
     return (FormatException exception) => showAlertDialog(
           context,
-          "Unknown Error",
-          "An unexpected error occurred.",
+          "FormatException Error",
+          "An FormatException error occurred.",
           "Close",
         );
   }
