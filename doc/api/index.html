@@ -29,7 +29,7 @@
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li class="self-crumb">nimphelos package</li>
+    <li><a href="https://github.com/fatiharge/nimphelos.git">nimphelos package</a></li>
   </ol>
   <div class="self-name">nimphelos</div>
   <form class="search navbar-right" role="search">
@@ -52,34 +52,171 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-<p>TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.</p>
-<h2 id="features">Features</h2>
-<p>TODO: List what your package can do. Maybe include images, gifs, or videos.</p>
-<h2 id="getting-started">Getting started</h2>
-<p>TODO: List prerequisites and provide or point to information on how to
-start using the package.</p>
+  <h1 id="nimphelos-package">Nimphelos Package</h1>
+<p><img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" alt="Version">
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<p>Nimphelos is a class that provides methods for managing service calls and handling exceptions. It
+can handle common errors like Dio and JSON errors. Additionally, it offers a flexible structure to
+add custom exception handlers. The package is used to facilitate error handling and network client
+operations in Flutter applications.</p>
 <h2 id="usage">Usage</h2>
-<p>TODO: Include short and useful examples for package users. Add longer examples
-to <code>/example</code> folder.</p>
-<pre class="language-dart"><code class="language-dart">const like = 'sample';
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+);
 </code></pre>
-<h2 id="additional-information">Additional information</h2>
-<p>TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.</p>
+<h3 id="hata-mesajlar">Hata Mesajları</h3>
+<p>Eğer servis başarılı şekilde çalışmaz ise, bu paket sayesinde ekranınızda bir uyarı (alert) kutusu
+göreceksiniz. Bu uyarı örnek olarak aşağıdaki gibidir:</p>
+<p><img src="resim_linki_buraya" alt="Uyarı Ekranı"></p>
+<p>Bu özelliği kullanmak istiyorsanız, context parametresini eklemeniz gerektiğini unutmayın. Ayrıca,
+activeAlert değeri varsayılan olarak true olup, bu özelliği kapatmak istiyorsanız false olarak
+ayarlamanız gerekiyor.</p>
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+  context: context,
+  activeAlert: true,
+);
+</code></pre>
+<p>Aşağıda ise bazı durumlar için oluşturulan hatalar için varsıyalan mesajlar vardır.</p>
+<h3 id="exceptiondiohandlers">exceptionDioHandlers</h3>
+<h4 id="connectiontimeout">connectionTimeout</h4>
+<p>title: "Connection Timeout"
+message: "The connection timed out. Please try again."</p>
+<h4 id="sendtimeout">sendTimeout</h4>
+<p>title: "Send Timeout"
+message: "Sending data timed out. Please try again."</p>
+<h4 id="receivetimeout">receiveTimeout</h4>
+<p>title: "Receive Timeout"
+message: "Receiving data timed out. Please try again."</p>
+<h4 id="badcertificate">badCertificate</h4>
+<p>title: "Invalid Certificate"
+message: "The server's certificate is invalid. Please connect to a secure network for
+communication."</p>
+<h4 id="badresponse">badResponse</h4>
+<p>title: "Bad Response"
+message: "A bad response was received from the server."</p>
+<h4 id="cancel">cancel</h4>
+<p>title: "Cancelled"
+message: "The operation was cancelled."</p>
+<h4 id="connectionerror">connectionError</h4>
+<p>title: "Connection Error"
+message: "A connection error occurred. Please check your network connection."</p>
+<h4 id="unknown-error">unknown error</h4>
+<p>title: "Unknown Error"
+message: "An unexpected error occurred."</p>
+<h3 id="exceptionjsonhandlers">exceptionJsonHandlers</h3>
+<h4 id="unsupportedobject">UnsupportedObject</h4>
+<p>title: "UnsupportedObject Error"
+message: "An UnsupportedObject error occurred."</p>
+<h3 id="exceptionformathandlers">exceptionFormatHandlers</h3>
+<h4 id="formatexception">FormatException</h4>
+<p>title: "FormatException Error"
+message: "An FormatException error occurred."</p>
+<h3 id="exceptionhandlers">exceptionHandlers</h3>
+<h4 id="unknown-error-2">unknown error</h4>
+<p>title: "Unknown Error"
+message: "An unexpected error occurred."</p>
+<h3 id="custom-hata-mesajlar">Custom Hata Mesajları</h3>
+<p>Eğer ki alert mesajını beğenmediyseniz bu mesajları uygulamasınıza göre değiştirebilirsiniz. Örneğin
+badCertificate hatası alıyorsanız aşağıdaki ekleme yapmanız yeterli olacaktır.</p>
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+  context: context,
+  activeAlert: true,
+  exceptionDioHandlers: DioExceptionHandlerModel(
+    badCertificateModel:  ExceptionExplanationModel("Custom title","Custom content","Custom button"),
+  ),
+);
+</code></pre>
+<h3 id="custom-error-action">Custom Error Action</h3>
+<p>Eğer ki hata durumunda daha karmaşık işlemler yapmanız gerekiyorsa kendiniz de fonksiyon ekleyebilrisniz.
+Örneğin connectionError hatası için consola yazı yazdırmak istiyorsanız aşağıdaki eklmeyi yapmanız yeterlidir.
+default olan alert kodu çalışmayacaktır. Sizin yazdığınız kod çalışır.</p>
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+  context: context,
+  activeAlert: true,
+  exceptionDioHandlers: DioExceptionHandlerModel(
+    badCertificateModel:  ExceptionExplanationModel("Custom title","Custom content","Custom button"),
+    connectionError: (exception) {
+        print("Custom action");
+    },
+  ),
+);
+</code></pre>
+<h3 id="willalwayswork-action">willAlwaysWork Action</h3>
+<p>Eğer ki ui işlerinden farklı işlemler yapmanız gerekiyorsa. Mesela hata durumunda loglama gibi
+bu durumlardan bağımsız ilgili Exception'a ulaşmak isteyebilirsiniz. Aşağıdaki örnek kullanımı görebilirsiniz.
+activeWillAlwaysWork parametresi true olmalıdır. Default'u true dur.</p>
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+  context: context,
+  activeAlert: true,
+  exceptionDioHandlers: DioExceptionHandlerModel(
+    badCertificateModel:  ExceptionExplanationModel("Custom title","Custom content","Custom button"),
+    connectionError: (exception) {
+        print("Custom action");
+    },
+    willAlwaysWork: &lt;E&gt;(exception) {
+       print("willAlwaysWork....");
+    },
+  ),
+);
+</code></pre>
+<h3 id="general-function">General Function</h3>
+<p>Eğer ki tüm hatalarda aynı aksiyonu almak istiyorsanız. context'i eklemeyin ve  generalFunction'u
+kullananın.</p>
+<pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
+  response: () async {
+    return (await dio.get("/welcome/test200")).data;
+  },
+  activeAlert: true,
+  generalFunction: &lt;E&gt;(exception) {
+    print("generalFunction");
+    return true;
+  },
+);
+</code></pre>
+<h2 id="api-reference">API Reference</h2>
+<p>For detailed information about the available methods, check out
+the <a href="https://your-api-reference-url.com">API Reference</a>.</p>
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<h2 id="nimphelos-the-jewel-of-middle-earth">Nimphelos: The Jewel of Middle-earth</h2>
+<p>The name Nimphelos is chosen in homage to the legendary author J.R.R. Tolkien's Middle-earth
+universe. This unique name represents a captivating jewel believed to be even larger than a pigeon's
+egg. Discovered by the Falathrim people on the shores of Balar Island, this gem holds a special
+place in the lore of Middle-earth.</p>
+<p>Just as Mazarbul serves as a ledger in the mythological tales of Middle-earth, Nimphelos stands as a
+prominent and unforgettable element in Tolkien's imaginative world. This package is designed not
+only to manage service calls and handle exceptions but also to embody the enchanting ambiance of
+Middle-earth.</p>
+<p>Nimphelos is more than just a package; it's a tribute to the rich legacy of J.R.R. Tolkien's works,
+and it follows in the footsteps of this captivating world with the values it provides.</p>
+<p><img src="https://raw.githubusercontent.com/fatiharge/nimphelos/main/assets/img.png" alt="Nimphelos"></p>
+<h2 id="fatiharge">Fatiharge</h2>
+<p>Bu proje <a href="https://www.fatiharge.com">Fatih Ar-Ge</a> tarafından geliştirilmiştir. Bu paket, hizmet
+çağrılarını yönetmek ve istisnaları ele almak için kullanılır. Özellikle, Dio, JSON ve Format
+istisnalarını işlemek için hazır çözümler sunar. Bu sayede uygulamalarınızda daha güvenilir hata
+yönetimi yapabilirsiniz. Ayrıca, hızlı ve kolay veri alışverişi için tasarlanmıştır. "Nimphelos"
+paket adı, Orta Dünya'nın zengin mitolojisinden ilham alarak seçilmiş olup, J.R.R. Tolkien'in büyük
+eserine saygıdır.</p>
+<p>This project is proudly developed by <a href="https://www.fatiharge.com">Fatih Ar-Ge</a> It is used to manage
+service calls and handle exceptions. Specifically, it provides ready-made solutions for dealing with
+Dio, JSON, and Format exceptions. This allows for more reliable error handling in your applications.
+Additionally, it is designed for fast and easy data exchange. The package name "Nimphelos" is chosen
+in homage to the rich mythology of Middle-earth, showing respect to the great work of J.R.R.
+Tolkien.</p>
 </section>
 
 
@@ -205,7 +342,7 @@ from the package authors, and more.</p>
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-    <li class="self-crumb">nimphelos package</li>
+    <li><a href="https://github.com/fatiharge/nimphelos.git">nimphelos package</a></li>
 </ol>
 
 
@@ -239,7 +376,7 @@ from the package authors, and more.</p>
 <footer>
   <span class="no-break">
     nimphelos
-      0.0.1
+      1.0.0
   </span>
 
   
