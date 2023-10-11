@@ -15,7 +15,8 @@ mixin ShowDialogMixin {
   /// The [context] parameter is a required BuildContext for displaying the dialog.
   /// The [title] parameter is the title of the alert dialog.
   /// The [content] parameter is the content of the alert dialog.
-  bool showAlertDialog(BuildContext context, String title, String content, String buttonText) {
+  bool showAlertDialog(
+      BuildContext context, String title, String content, String buttonText) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -26,7 +27,8 @@ mixin ShowDialogMixin {
             TextButton(
               child: Text(
                 buttonText,
-                style: TextStyle(color: Theme.of(context).dialogTheme.titleTextStyle?.color),
+                style: TextStyle(
+                    color: Theme.of(context).dialogTheme.titleTextStyle?.color),
               ),
               onPressed: () => Navigator.of(context).pop(),
             ),

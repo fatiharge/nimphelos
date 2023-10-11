@@ -19,7 +19,8 @@ extension GetJsonExceptionHandlerExtension on Nimphelos {
   /// * [exceptionHandlers] contains a set of custom JSON exception handling functions.
   ///
   /// Returns a function to handle JsonUnsupportedObjectError.
-  bool? Function(JsonUnsupportedObjectError exception)? getJsonExceptionHandler({
+  bool? Function(JsonUnsupportedObjectError exception)?
+      getJsonExceptionHandler({
     required JsonExceptionHandlerModel? exceptionHandlers,
   }) {
     return exceptionHandlers?.jsonParseHandle;

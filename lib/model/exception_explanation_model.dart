@@ -9,7 +9,6 @@
 
 /// A model class for providing explanations for exceptions.
 class ExceptionExplanationModel {
-
   /// The title of the exception explanation.
   String title;
 

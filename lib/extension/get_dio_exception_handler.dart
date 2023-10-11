@@ -13,7 +13,6 @@ import 'package:nimphelos/nimphelos.dart';
 
 /// An extension providing methods for handling DioExceptions in ServiceManager.
 extension GetDioExceptionHandlerExtension on Nimphelos {
-
   /// Retrieves the Dio exception handling function based on the provided DioException.
   ///
   /// * [e] is the DioException to handle.
