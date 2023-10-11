@@ -1,3 +1,2 @@
-## 0.0.1
-
-* TODO: Describe initial release.
+## [1.0.0] - 2023-10-1212
+- Initial release: Features added.
