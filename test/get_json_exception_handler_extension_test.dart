@@ -17,7 +17,8 @@ void main() {
         await Future.delayed(const Duration(microseconds: 100));
 
         // Throw a JsonUnsupportedObjectError with some sample parameters
-        throw JsonUnsupportedObjectError(Object(), cause: Object(), partialResult: "JsonUnsupportedObjectError TEST");
+        throw JsonUnsupportedObjectError(Object(),
+            cause: Object(), partialResult: "JsonUnsupportedObjectError TEST");
       },
     );
 

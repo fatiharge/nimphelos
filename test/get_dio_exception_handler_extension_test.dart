@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nimphelos/enum/error_type_enum.dart';
-import 'package:nimphelos/model/dio_exception_handler_model.dart';
-import 'package:nimphelos/extension/get_dio_exception_handler.dart';
 import 'package:nimphelos/model/nimphelos_model.dart';
 import 'package:nimphelos/nimphelos.dart';
 
@@ -23,14 +21,12 @@ void main() {
         },
       );
 
-      print(res.success);
-      print(res.object.runtimeType);
-      print(res.exception.runtimeType);
-
-      print((res.exception as DioException).type);
-      print((res.exception as DioException).response.toString());
-
-
+      // print(res.success);
+      // print(res.object.runtimeType);
+      // print(res.exception.runtimeType);
+      //
+      // print((res.exception as DioException).type);
+      // print((res.exception as DioException).response.toString());
 
       // Check if the exception type is Exception
       expect(res.exception, isNotNull);

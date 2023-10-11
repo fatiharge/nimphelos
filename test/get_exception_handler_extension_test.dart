@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nimphelos/model/exception_handler_model.dart';
 import 'package:nimphelos/enum/error_type_enum.dart';
 import 'package:nimphelos/model/nimphelos_model.dart';
 import 'package:nimphelos/nimphelos.dart';
