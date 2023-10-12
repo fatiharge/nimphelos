@@ -30,14 +30,12 @@ extension PrepareDioExceptionExtension on Nimphelos {
     BuildContext? context,
     required DioExceptionType type,
     required DioExceptionHandlerModel? exceptionHandlers,
-    bool Function(DioException exception)? generalFunction,
   }) {
     if (context == null) {
-      return generalFunction ??
-          (DioException exception) {
-            debugPrint(exception.message);
-            return true;
-          };
+      return (DioException exception) {
+        debugPrint(exception.message);
+        return true;
+      };
     }
 
     switch (type) {
@@ -45,12 +43,9 @@ extension PrepareDioExceptionExtension on Nimphelos {
       case DioExceptionType.connectionTimeout:
         return (DioException exception) => showAlertDialog(
               context,
-              exceptionHandlers?.connectionTimeoutModel?.title ??
-                  "Connection Timeout",
-              exceptionHandlers?.connectionTimeoutModel?.content ??
-                  "The connection timed out. Please try again.",
-              exceptionHandlers?.connectionTimeoutModel?.buttonContent ??
-                  "Close",
+              exceptionHandlers?.connectionTimeoutModel?.title ?? "Connection Timeout",
+              exceptionHandlers?.connectionTimeoutModel?.content ?? "The connection timed out. Please try again.",
+              exceptionHandlers?.connectionTimeoutModel?.buttonContent ?? "Close",
             );
 
       // Handle send timeout exception.
@@ -58,8 +53,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
         return (DioException exception) => showAlertDialog(
               context,
               exceptionHandlers?.sendTimeoutModel?.title ?? "Send Timeout",
-              exceptionHandlers?.sendTimeoutModel?.content ??
-                  "Sending data timed out. Please try again.",
+              exceptionHandlers?.sendTimeoutModel?.content ?? "Sending data timed out. Please try again.",
               exceptionHandlers?.sendTimeoutModel?.buttonContent ?? "Close",
             );
 
@@ -67,10 +61,8 @@ extension PrepareDioExceptionExtension on Nimphelos {
       case DioExceptionType.receiveTimeout:
         return (DioException exception) => showAlertDialog(
               context,
-              exceptionHandlers?.receiveTimeoutModel?.title ??
-                  "Receive Timeout",
-              exceptionHandlers?.receiveTimeoutModel?.content ??
-                  "Receiving data timed out. Please try again.",
+              exceptionHandlers?.receiveTimeoutModel?.title ?? "Receive Timeout",
+              exceptionHandlers?.receiveTimeoutModel?.content ?? "Receiving data timed out. Please try again.",
               exceptionHandlers?.receiveTimeoutModel?.buttonContent ?? "Close",
             );
 
@@ -78,8 +70,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
       case DioExceptionType.badCertificate:
         return (DioException exception) => showAlertDialog(
               context,
-              exceptionHandlers?.badCertificateModel?.title ??
-                  "Invalid Certificate",
+              exceptionHandlers?.badCertificateModel?.title ?? "Invalid Certificate",
               exceptionHandlers?.badCertificateModel?.content ??
                   "The server's certificate is invalid. Please connect to a secure network for communication.",
               exceptionHandlers?.badCertificateModel?.buttonContent ?? "Close",
@@ -90,8 +81,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
         return (DioException exception) => showAlertDialog(
               context,
               exceptionHandlers?.badResponseModel?.title ?? "Bad Response",
-              exceptionHandlers?.badResponseModel?.content ??
-                  "A bad response was received from the server.",
+              exceptionHandlers?.badResponseModel?.content ?? "A bad response was received from the server.",
               exceptionHandlers?.badResponseModel?.buttonContent ?? "Close",
             );
 
@@ -100,8 +90,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
         return (DioException exception) => showAlertDialog(
               context,
               exceptionHandlers?.cancelModel?.title ?? "Cancelled",
-              exceptionHandlers?.cancelModel?.content ??
-                  "The operation was cancelled.",
+              exceptionHandlers?.cancelModel?.content ?? "The operation was cancelled.",
               exceptionHandlers?.cancelModel?.buttonContent ?? "Close",
             );
 
@@ -109,8 +98,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
       case DioExceptionType.connectionError:
         return (DioException exception) => showAlertDialog(
               context,
-              exceptionHandlers?.connectionErrorModel?.title ??
-                  "Connection Error",
+              exceptionHandlers?.connectionErrorModel?.title ?? "Connection Error",
               exceptionHandlers?.connectionErrorModel?.content ??
                   "A connection error occurred. Please check your network connection.",
               exceptionHandlers?.connectionErrorModel?.buttonContent ?? "Close",
@@ -121,8 +109,7 @@ extension PrepareDioExceptionExtension on Nimphelos {
         return (DioException exception) => showAlertDialog(
               context,
               exceptionHandlers?.unknownModel?.title ?? "Unknown Error",
-              exceptionHandlers?.unknownModel?.content ??
-                  "An unexpected error occurred.",
+              exceptionHandlers?.unknownModel?.content ?? "An unexpected error occurred.",
               exceptionHandlers?.unknownModel?.buttonContent ?? "Close",
             );
     }
@@ -139,14 +126,12 @@ extension PrepareDioExceptionExtension on Nimphelos {
   bool Function(Exception exception)? prepareExceptionFunction({
     ExceptionExplanationModel? exceptionExplanationModel,
     BuildContext? context,
-    bool Function(Exception exception)? generalFunction,
   }) {
     if (context == null) {
-      return generalFunction ??
-          (Exception exception) {
-            debugPrint(exception.toString());
-            return true;
-          };
+      return (Exception exception) {
+        debugPrint(exception.toString());
+        return true;
+      };
     }
 
     return (Exception exception) => showAlertDialog(
@@ -165,18 +150,15 @@ extension PrepareDioExceptionExtension on Nimphelos {
   /// and [context] is null. It is only invoked in this case.
   ///
   /// Returns a function to handle the JsonUnsupportedObjectError.
-  bool Function(JsonUnsupportedObjectError exception)?
-      prepareJsonExceptionFunction({
+  bool Function(JsonUnsupportedObjectError exception)? prepareJsonExceptionFunction({
     ExceptionExplanationModel? exceptionExplanationModel,
     BuildContext? context,
-    bool Function(JsonUnsupportedObjectError exception)? generalFunction,
   }) {
     if (context == null) {
-      return generalFunction ??
-          (JsonUnsupportedObjectError exception) {
-            debugPrint(exception.toString());
-            return true;
-          };
+      return (JsonUnsupportedObjectError exception) {
+        debugPrint(exception.toString());
+        return true;
+      };
     }
 
     return (JsonUnsupportedObjectError exception) => showAlertDialog(
@@ -198,14 +180,12 @@ extension PrepareDioExceptionExtension on Nimphelos {
   bool Function(FormatException exception)? prepareFormatExceptionFunction({
     ExceptionExplanationModel? exceptionExplanationModel,
     BuildContext? context,
-    bool Function(FormatException exception)? generalFunction,
   }) {
     if (context == null) {
-      return generalFunction ??
-          (FormatException exception) {
-            debugPrint(exception.toString());
-            return true;
-          };
+      return (FormatException exception) {
+        debugPrint(exception.toString());
+        return true;
+      };
     }
 
     return (FormatException exception) => showAlertDialog(

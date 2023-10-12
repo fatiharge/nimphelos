@@ -94,9 +94,10 @@ class Nimphelos extends IAbstract with ShowDialogMixin {
         prepareDioFunctionInstance = prepareDioFunction(
           context: context,
           type: e.type,
-          generalFunction: generalFunction,
           exceptionHandlers: exceptionDioHandlers,
         );
+      } else {
+        prepareDioFunctionInstance = generalFunction;
       }
 
       // Create a BaseResponseModel object for DioException.
@@ -129,21 +130,18 @@ class Nimphelos extends IAbstract with ShowDialogMixin {
       // If a JsonUnsupportedObjectError occurs, this block will be executed.
 
       // Create an object to call the prepareJsonExceptionFunction.
-      bool Function(JsonUnsupportedObjectError)?
-          prepareJsonExceptionFunctionInstance;
+      bool Function(JsonUnsupportedObjectError)? prepareJsonExceptionFunctionInstance;
 
       // If there is a context and the widget is in "mounted" state, prepare the function.
       if (context?.mounted ?? false) {
         // ignore: use_build_context_synchronously
-        prepareJsonExceptionFunctionInstance = prepareJsonExceptionFunction(
-          context: context!,
-          generalFunction: generalFunction,
-        );
+        prepareJsonExceptionFunctionInstance = prepareJsonExceptionFunction(context: context!);
+      } else {
+        prepareJsonExceptionFunctionInstance = generalFunction;
       }
 
       // Create a BaseResponseModel object for JsonUnsupportedObjectError.
-      NimphelosModel<T, JsonUnsupportedObjectError> baseResponseModel =
-          NimphelosModel<T, JsonUnsupportedObjectError>(
+      NimphelosModel<T, JsonUnsupportedObjectError> baseResponseModel = NimphelosModel<T, JsonUnsupportedObjectError>(
         errorTypeEnum: ErrorTypeEnum.jsonUnsupportedObjectError,
         success: false,
         function: getJsonExceptionHandler(
@@ -173,15 +171,13 @@ class Nimphelos extends IAbstract with ShowDialogMixin {
       // If there is a context and the widget is in "mounted" state, prepare the function.
       if (context?.mounted ?? false) {
         // ignore: use_build_context_synchronously
-        prepareFormatExceptionFunctionInstance = prepareFormatExceptionFunction(
-          context: context!,
-          generalFunction: generalFunction,
-        );
+        prepareFormatExceptionFunctionInstance = prepareFormatExceptionFunction(context: context!);
+      } else {
+        prepareFormatExceptionFunctionInstance = generalFunction;
       }
 
       // Create a BaseResponseModel object for FormatException.
-      NimphelosModel<T, FormatException> baseResponseModel =
-          NimphelosModel<T, FormatException>(
+      NimphelosModel<T, FormatException> baseResponseModel = NimphelosModel<T, FormatException>(
         errorTypeEnum: ErrorTypeEnum.formatException,
         success: false,
         function: getFormatExceptionHandler(
@@ -214,15 +210,13 @@ class Nimphelos extends IAbstract with ShowDialogMixin {
       // If there is a context and the widget is in "mounted" state, prepare the function.
       if (context?.mounted ?? false) {
         // ignore: use_build_context_synchronously
-        prepareExceptionFunctionInstance = prepareExceptionFunction(
-          context: context!,
-          generalFunction: generalFunction,
-        );
+        prepareExceptionFunctionInstance = prepareExceptionFunction(context: context!);
+      } else {
+        prepareExceptionFunctionInstance = generalFunction;
       }
 
       // Create a BaseResponseModel object.
-      NimphelosModel<T, Exception> baseResponseModel =
-          NimphelosModel<T, Exception>(
+      NimphelosModel<T, Exception> baseResponseModel = NimphelosModel<T, Exception>(
         errorTypeEnum: ErrorTypeEnum.unhandled,
         success: false,
         function: getExceptionHandler(
