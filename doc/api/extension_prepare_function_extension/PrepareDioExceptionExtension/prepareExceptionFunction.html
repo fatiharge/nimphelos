@@ -65,10 +65,7 @@
 
 <span class="returntype">(<a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a> Function<span class="signature">(<span class="parameter" id="param-exception"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a></span> <span class="parameter-name">exception</span></span>)</span>?)</span>
 <span class="name ">prepareExceptionFunction</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="prepareExceptionFunction-param-exceptionExplanationModel">{<span class="type-annotation"><a href="../../model_exception_explanation_model/ExceptionExplanationModel-class.html">ExceptionExplanationModel</a>?</span> <span class="parameter-name">exceptionExplanationModel</span>, </span></li>
-<li><span class="parameter" id="prepareExceptionFunction-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>?</span> <span class="parameter-name">context</span>, </span></li>
-<li><span class="parameter" id="prepareExceptionFunction-param-generalFunction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">generalFunction</span>(<ol class="parameter-list"><li><span class="parameter" id="param-exception"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Exception-class.html">Exception</a></span> <span class="parameter-name">exception</span></span></li>
-</ol>
-)?}</span></li>
+<li><span class="parameter" id="prepareExceptionFunction-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>?</span> <span class="parameter-name">context</span>}</span></li>
 </ol>)
 
       
@@ -93,14 +90,12 @@ and <code>context</code> is null. It is only invoked in this case.</li>
   <pre class="language-dart"><code class="language-dart">bool Function(Exception exception)? prepareExceptionFunction({
   ExceptionExplanationModel? exceptionExplanationModel,
   BuildContext? context,
-  bool Function(Exception exception)? generalFunction,
 }) {
   if (context == null) {
-    return generalFunction ??
-        (Exception exception) {
-          debugPrint(exception.toString());
-          return true;
-        };
+    return (Exception exception) {
+      debugPrint(exception.toString());
+      return true;
+    };
   }
 
   return (Exception exception) =&gt; showAlertDialog(

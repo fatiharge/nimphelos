@@ -66,10 +66,7 @@
 <span class="returntype">(<a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a> Function<span class="signature">(<span class="parameter" id="param-exception"><span class="type-annotation"><a href="https://pub.dev/documentation/dio/5.3.2/dio/DioException-class.html">DioException</a></span> <span class="parameter-name">exception</span></span>)</span>?)</span>
 <span class="name ">prepareDioFunction</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="prepareDioFunction-param-context">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>?</span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="prepareDioFunction-param-type"><span>required</span> <span class="type-annotation"><a href="https://pub.dev/documentation/dio/5.3.2/dio/DioExceptionType.html">DioExceptionType</a></span> <span class="parameter-name">type</span>, </span></li>
-<li><span class="parameter" id="prepareDioFunction-param-exceptionHandlers"><span>required</span> <span class="type-annotation"><a href="../../model_dio_exception_handler_model/DioExceptionHandlerModel-class.html">DioExceptionHandlerModel</a>?</span> <span class="parameter-name">exceptionHandlers</span>, </span></li>
-<li><span class="parameter" id="prepareDioFunction-param-generalFunction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">generalFunction</span>(<ol class="parameter-list"><li><span class="parameter" id="param-exception"><span class="type-annotation"><a href="https://pub.dev/documentation/dio/5.3.2/dio/DioException-class.html">DioException</a></span> <span class="parameter-name">exception</span></span></li>
-</ol>
-)?}</span></li>
+<li><span class="parameter" id="prepareDioFunction-param-exceptionHandlers"><span>required</span> <span class="type-annotation"><a href="../../model_dio_exception_handler_model/DioExceptionHandlerModel-class.html">DioExceptionHandlerModel</a>?</span> <span class="parameter-name">exceptionHandlers</span>}</span></li>
 </ol>)
 
       
@@ -96,14 +93,12 @@ and <code>context</code> is null. It is only invoked in this case.</li>
   BuildContext? context,
   required DioExceptionType type,
   required DioExceptionHandlerModel? exceptionHandlers,
-  bool Function(DioException exception)? generalFunction,
 }) {
   if (context == null) {
-    return generalFunction ??
-        (DioException exception) {
-          debugPrint(exception.message);
-          return true;
-        };
+    return (DioException exception) {
+      debugPrint(exception.message);
+      return true;
+    };
   }
 
   switch (type) {

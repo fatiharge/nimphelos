@@ -162,9 +162,10 @@ Future&lt;NimphelosModel&lt;T, dynamic&gt;&gt; fetchData&lt;T&gt;({
       prepareDioFunctionInstance = prepareDioFunction(
         context: context,
         type: e.type,
-        generalFunction: generalFunction,
         exceptionHandlers: exceptionDioHandlers,
       );
+    } else {
+      prepareDioFunctionInstance = generalFunction;
     }
 
     &#47;&#47; Create a BaseResponseModel object for DioException.
@@ -203,10 +204,10 @@ Future&lt;NimphelosModel&lt;T, dynamic&gt;&gt; fetchData&lt;T&gt;({
     &#47;&#47; If there is a context and the widget is in &quot;mounted&quot; state, prepare the function.
     if (context?.mounted ?? false) {
       &#47;&#47; ignore: use_build_context_synchronously
-      prepareJsonExceptionFunctionInstance = prepareJsonExceptionFunction(
-        context: context!,
-        generalFunction: generalFunction,
-      );
+      prepareJsonExceptionFunctionInstance =
+          prepareJsonExceptionFunction(context: context!);
+    } else {
+      prepareJsonExceptionFunctionInstance = generalFunction;
     }
 
     &#47;&#47; Create a BaseResponseModel object for JsonUnsupportedObjectError.
@@ -241,10 +242,10 @@ Future&lt;NimphelosModel&lt;T, dynamic&gt;&gt; fetchData&lt;T&gt;({
     &#47;&#47; If there is a context and the widget is in &quot;mounted&quot; state, prepare the function.
     if (context?.mounted ?? false) {
       &#47;&#47; ignore: use_build_context_synchronously
-      prepareFormatExceptionFunctionInstance = prepareFormatExceptionFunction(
-        context: context!,
-        generalFunction: generalFunction,
-      );
+      prepareFormatExceptionFunctionInstance =
+          prepareFormatExceptionFunction(context: context!);
+    } else {
+      prepareFormatExceptionFunctionInstance = generalFunction;
     }
 
     &#47;&#47; Create a BaseResponseModel object for FormatException.
@@ -282,10 +283,10 @@ Future&lt;NimphelosModel&lt;T, dynamic&gt;&gt; fetchData&lt;T&gt;({
     &#47;&#47; If there is a context and the widget is in &quot;mounted&quot; state, prepare the function.
     if (context?.mounted ?? false) {
       &#47;&#47; ignore: use_build_context_synchronously
-      prepareExceptionFunctionInstance = prepareExceptionFunction(
-        context: context!,
-        generalFunction: generalFunction,
-      );
+      prepareExceptionFunctionInstance =
+          prepareExceptionFunction(context: context!);
+    } else {
+      prepareExceptionFunctionInstance = generalFunction;
     }
 
     &#47;&#47; Create a BaseResponseModel object.

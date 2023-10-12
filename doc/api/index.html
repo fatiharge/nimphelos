@@ -66,13 +66,12 @@ operations in Flutter applications.</p>
   },
 );
 </code></pre>
-<h3 id="hata-mesajlar">Hata Mesajları</h3>
-<p>Eğer servis başarılı şekilde çalışmaz ise, bu paket sayesinde ekranınızda bir uyarı (alert) kutusu
-göreceksiniz. Bu uyarı örnek olarak aşağıdaki gibidir:</p>
-<p><img src="resim_linki_buraya" alt="Uyarı Ekranı"></p>
-<p>Bu özelliği kullanmak istiyorsanız, context parametresini eklemeniz gerektiğini unutmayın. Ayrıca,
-activeAlert değeri varsayılan olarak true olup, bu özelliği kapatmak istiyorsanız false olarak
-ayarlamanız gerekiyor.</p>
+<h3 id="error-messages">Error Messages</h3>
+<p>If the service does not work successfully, thanks to this package, you will see a warning (alert)
+box on your screen. An example of this warning is as follows:</p>
+<p><img src="https://raw.githubusercontent.com/fatiharge/nimphelos/main/assets/example_error.png" alt="example_error"></p>
+<p>If you want to use this feature, don't forget to add the context parameter. Also, the activeAlert
+value is true by default. If you want to disable this feature, you should set it to false.</p>
 <pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
   response: () async {
     return (await dio.get("/welcome/test200")).data;
@@ -81,7 +80,7 @@ ayarlamanız gerekiyor.</p>
   activeAlert: true,
 );
 </code></pre>
-<p>Aşağıda ise bazı durumlar için oluşturulan hatalar için varsıyalan mesajlar vardır.</p>
+<p>Below are default messages for errors created for certain situations.</p>
 <h3 id="exceptiondiohandlers">exceptionDioHandlers</h3>
 <h4 id="connectiontimeout">connectionTimeout</h4>
 <p>title: "Connection Timeout"
@@ -120,9 +119,10 @@ message: "An FormatException error occurred."</p>
 <h4 id="unknown-error-2">unknown error</h4>
 <p>title: "Unknown Error"
 message: "An unexpected error occurred."</p>
-<h3 id="custom-hata-mesajlar">Custom Hata Mesajları</h3>
-<p>Eğer ki alert mesajını beğenmediyseniz bu mesajları uygulamasınıza göre değiştirebilirsiniz. Örneğin
-badCertificate hatası alıyorsanız aşağıdaki ekleme yapmanız yeterli olacaktır.</p>
+<h3 id="custom-error-messages">Custom Error Messages</h3>
+<p>If you don't like the default alert message, you can customize these messages according to your
+application. For example, if you encounter a badCertificate error, you just need to make the
+following addition:</p>
 <pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
   response: () async {
     return (await dio.get("/welcome/test200")).data;
@@ -135,9 +135,9 @@ badCertificate hatası alıyorsanız aşağıdaki ekleme yapmanız yeterli olaca
 );
 </code></pre>
 <h3 id="custom-error-action">Custom Error Action</h3>
-<p>Eğer ki hata durumunda daha karmaşık işlemler yapmanız gerekiyorsa kendiniz de fonksiyon ekleyebilrisniz.
-Örneğin connectionError hatası için consola yazı yazdırmak istiyorsanız aşağıdaki eklmeyi yapmanız yeterlidir.
-default olan alert kodu çalışmayacaktır. Sizin yazdığınız kod çalışır.</p>
+<p>If you need to perform more complex operations in case of an error, you can add your own function.
+For example, if you want to print a message to the console for the connectionError, just add the
+following:</p>
 <pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
   response: () async {
     return (await dio.get("/welcome/test200")).data;
@@ -152,10 +152,12 @@ default olan alert kodu çalışmayacaktır. Sizin yazdığınız kod çalışı
   ),
 );
 </code></pre>
+<p>In this case, the default alert code will not run, and your custom code will take effect.</p>
 <h3 id="willalwayswork-action">willAlwaysWork Action</h3>
-<p>Eğer ki ui işlerinden farklı işlemler yapmanız gerekiyorsa. Mesela hata durumunda loglama gibi
-bu durumlardan bağımsız ilgili Exception'a ulaşmak isteyebilirsiniz. Aşağıdaki örnek kullanımı görebilirsiniz.
-activeWillAlwaysWork parametresi true olmalıdır. Default'u true dur.</p>
+<p>If you need to perform operations different from UI tasks, such as logging in case of an error,
+you may want to access the relevant Exception independently from these situations. You can see the
+example usage below. The activeWillAlwaysWork parameter must be set to true. Its default value is
+true.</p>
 <pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
   response: () async {
     return (await dio.get("/welcome/test200")).data;
@@ -174,8 +176,7 @@ activeWillAlwaysWork parametresi true olmalıdır. Default'u true dur.</p>
 );
 </code></pre>
 <h3 id="general-function">General Function</h3>
-<p>Eğer ki tüm hatalarda aynı aksiyonu almak istiyorsanız. context'i eklemeyin ve  generalFunction'u
-kullananın.</p>
+<p>If you want to take the same action for all errors, do not include the context and use the generalFunction.</p>
 <pre class="language-dart"><code class="language-dart">NimphelosModel res = await nimphelos.fetchData&lt;String&gt;(
   response: () async {
     return (await dio.get("/welcome/test200")).data;
@@ -189,7 +190,7 @@ kullananın.</p>
 </code></pre>
 <h2 id="api-reference">API Reference</h2>
 <p>For detailed information about the available methods, check out
-the <a href="https://your-api-reference-url.com">API Reference</a>.</p>
+the <a href="https://fatiharge.github.io/nimphelos/">API Reference</a>.</p>
 <h2 id="license">License</h2>
 <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 <h2 id="nimphelos-the-jewel-of-middle-earth">Nimphelos: The Jewel of Middle-earth</h2>
