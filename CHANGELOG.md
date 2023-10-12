@@ -1,2 +1,2 @@
-## [1.0.0] - 2023-10-1212
+## [1.0.0] - 2023-10-12
 - Initial release: Features added.
