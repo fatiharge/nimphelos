@@ -64,7 +64,9 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         await nimphelos.fetchData<Map<String, dynamic>>(
           response: () async {
-            return (await Dio().get("https://jsonplaceholders.typicode.com/posts/1")).data;
+            return (await Dio()
+                    .get("https://jsonplaceholders.typicode.com/posts/1"))
+                .data;
           },
           context: context,
           activeAlert: true,
@@ -83,7 +85,9 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         await nimphelos.fetchData<Map<String, dynamic>>(
             response: () async {
-              return (await Dio().get("https://jsonplaceholders.typicode.com/posts/1")).data;
+              return (await Dio()
+                      .get("https://jsonplaceholders.typicode.com/posts/1"))
+                  .data;
             },
             activeAlert: true,
             generalFunction: <E>(exception) {
@@ -110,7 +114,9 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         await nimphelos.fetchData<Map<String, dynamic>>(
           response: () async {
-            return (await Dio().get("https://jsonplaceholders.typicode.com/posts/1")).data;
+            return (await Dio()
+                    .get("https://jsonplaceholders.typicode.com/posts/1"))
+                .data;
           },
           context: context,
           activeAlert: true,
@@ -141,12 +147,15 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         await nimphelos.fetchData<Map<String, dynamic>>(
           response: () async {
-            return (await Dio().get("https://jsonplaceholders.typicode.com/posts/1")).data;
+            return (await Dio()
+                    .get("https://jsonplaceholders.typicode.com/posts/1"))
+                .data;
           },
           context: context,
           activeAlert: true,
           exceptionDioHandlers: DioExceptionHandlerModel(
-            connectionErrorModel: ExceptionExplanationModel("custom title", "custom content", "Close"),
+            connectionErrorModel: ExceptionExplanationModel(
+                "custom title", "custom content", "Close"),
           ),
         );
       },
@@ -159,7 +168,9 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         await nimphelos.fetchData<Map<String, dynamic>>(
           response: () async {
-            return (await Dio().get("https://jsonplaceholder.stypicode.com/posts/1")).data;
+            return (await Dio()
+                    .get("https://jsonplaceholder.stypicode.com/posts/1"))
+                .data;
           },
           context: context,
           activeAlert: true,
@@ -174,7 +185,9 @@ class _TestWidgetState extends State<TestWidget> {
       onPressed: () async {
         NimphelosModel res = await nimphelos.fetchData<Map<String, dynamic>>(
           response: () async {
-            return (await Dio().get("https://jsonplaceholder.typicode.com/posts/1")).data;
+            return (await Dio()
+                    .get("https://jsonplaceholder.typicode.com/posts/1"))
+                .data;
           },
           context: context,
           activeAlert: true,
